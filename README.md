@@ -11,7 +11,7 @@ pip install numpy
 ```
 
 In order to use this module, use the below code snippet in your Python script.
-Some examples can also be found in the test.py file.
+Some examples can also be found in the [test.py](test.py) file.
 
 ```python
 from pathfinder import PathFinder3D
