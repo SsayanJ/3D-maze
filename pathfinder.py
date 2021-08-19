@@ -27,7 +27,7 @@ class PathFinder3D:
             start (list): Coordinates of the starting cell in the format [x, y, z]
             goal (list): Coordinates of the goal cell in the format [x, y, z]
             alg (str, optional): Two algorithms are available, 'bfs' for Breadth First Search 
-                or 'a*' for A* algorithm.
+                or 'a_star' for A* algorithm.
 
         Returns:
             list: a list of coordinates [x, y, z] representing the path from the start cell to the goal.
@@ -39,7 +39,7 @@ class PathFinder3D:
         self.goal = np.array(goal).astype(int)
         if alg == 'bfs':
             previous_cell_dict = self._solve_bfs()
-        elif alg == 'a*':
+        elif alg == 'a_star':
             self.distances = np.empty(self.maze.shape)
             self.distances.fill(np.inf)
             previous_cell_dict = self._solve_a_star()
@@ -104,7 +104,7 @@ class PathFinder3D:
                 if neighbour_distance < self.distances[tuple(neighbour)]:
                     self.distances[tuple(neighbour)] = neighbour_distance
                     priority = int(neighbour_distance +
-                                   self._manhattan_distance(neighbour, self.goal))
+                                   self._manhattan_distance(neighbour))
                     cells_queue.put((priority, tuple(neighbour)))
                     previous_cell_dict[tuple(neighbour)] = current
         return previous_cell_dict

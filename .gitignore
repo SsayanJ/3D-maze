@@ -130,3 +130,7 @@ dmypy.json
 
 # Doc generation file
 generate_doc.py
+
+# 3D model
+3D_models
+
