@@ -10,7 +10,7 @@ A class to find the path between 2 cells of a 3D maze
 
 **Args:**
 
-- <b>`maze`</b> (:obj:`numpy array`): The 3D maze should have zeros for usable cells and ones for walls.
+- <b>`maze`</b> (`numpy array`): The 3D maze should have zeros for usable cells and ones for walls.
 - <b>`nb_move_directions`</b> (int, optional): The number of directions that can be taken in one move. Integer value between 1 and 3 (default is 1)
 
 ### <kbd>method</kbd> `PathFinder3D.__init__`
@@ -24,7 +24,7 @@ __init__(maze, nb_move_directions=1) → None
 ### <kbd>method</kbd> `PathFinder3D.create_move_list`
 
 ```python
-create_move_list(nb_dimensions=1)
+_create_move_list(nb_dimensions=1)
 ```
 
 Compute the possible move list based on the nb of dimension moves allowed.
@@ -42,7 +42,7 @@ Compute the possible move list based on the nb of dimension moves allowed.
 ### <kbd>method</kbd> `PathFinder3D.find_neighbours`
 
 ```python
-find_neighbours(position)
+_find_neighbours(position)
 ```
 
 Find accessibles neighbours from a cell.
@@ -51,7 +51,7 @@ It uses the list of moves defined when instanciating the PathFinder3D class. It 
 
 **Args:**
 
-- <b>`position`</b> (:obj:`numpy array`): the [x, y, z] coordinates of the cell for which we are searching the neighbours
+- <b>`position`</b> (`numpy array`): the [x, y, z] coordinates of the cell for which we are searching the neighbours
 
 **Returns:**
 
@@ -82,14 +82,14 @@ Compute the path between a strat and a goal cell in a 3D maze
 ### <kbd>method</kbd> `PathFinder3D.manhattan_distance`
 
 ```python
-manhattan_distance(position)
+_manhattan_distance(position)
 ```
 
 Compute Manhattan distance between a cell and the goal.
 
 **Args:**
 
-- <b>`position`</b> (:obj:`numpy array`): the [x, y, z] coordinates of the cell to check
+- <b>`position`</b> (`numpy array`): the [x, y, z] coordinates of the cell to check
 
 **Returns:**
 
@@ -100,14 +100,14 @@ Compute Manhattan distance between a cell and the goal.
 ### <kbd>method</kbd> `PathFinder3D.position_in_grid`
 
 ```python
-position_in_grid(position)
+_position_in_grid(position)
 ```
 
 Check if the given coordinates are within the grid boundaries
 
 **Args:**
 
-- <b>`position`</b> (:obj:`numpy array`): the [x, y, z] coordinates of the cell to check
+- <b>`position`</b> (`numpy array`): the [x, y, z] coordinates of the cell to check
 
 **Returns:**
 
@@ -118,7 +118,7 @@ Check if the given coordinates are within the grid boundaries
 ### <kbd>method</kbd> `PathFinder3D.reconstruct_path`
 
 ```python
-reconstruct_path(prev)
+_reconstruct_path(prev)
 ```
 
 Reconstruct path from a dictionnary {cell: previous_cell}
@@ -132,7 +132,7 @@ Reconstruct path from a dictionnary {cell: previous_cell}
 ### <kbd>method</kbd> `PathFinder3D.solve_a_star`
 
 ```python
-solve_a_star()
+_solve_a_star()
 ```
 
 Performs A\* algortihm to identify the path between start and goal cells.
@@ -148,7 +148,7 @@ This algorithm uses the Manhattan distance as heuristic and is significantly fas
 ### <kbd>method</kbd> `PathFinder3D.solve_bfs`
 
 ```python
-solve_bfs()
+_solve_bfs()
 ```
 
 Performs a Breadth First Search to identify shortest path.
