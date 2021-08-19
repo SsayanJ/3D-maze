@@ -24,8 +24,6 @@ See Documentation part below for more information on each parameters and what is
 
 ## Approach
 
----
-
 ### Breadth First Search
 
 I used first a regular Breadth First Search Algorithm (BFS) to find the shortest path between the start and the goal cell.  
@@ -96,7 +94,7 @@ The maze can have walls that cannot be traversed.
 
 **Args:**
 
-- <b>`maze`</b> (:obj:`numpy array`): The 3D maze should have zeros for usable cells and ones for walls.
+- <b>`maze`</b> (`numpy array`): The 3D maze should have zeros for usable cells and ones for walls.
 - <b>`nb_move_directions`</b> (int, optional): The number of directions that can be taken in one move. Integer value between 1 and 3 (default is 1)
 
 ### <kbd>method</kbd> `PathFinder3D.__init__`
