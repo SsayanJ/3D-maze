@@ -23,6 +23,18 @@ def test_2_passing_walls(alg='bfs'):
     return my_pathfinder.find_path(start, goal, alg=alg)
 
 
+def test_single_holes(alg='bfs'):
+    maze = np.zeros((5, 5, 5))
+    maze[:, 1, :] = 1
+    maze[3, 1, 3] = 0
+    maze[:, 3, :] = 1
+    maze[1, 3, 4] = 0
+    start = [0, 0, 0]
+    goal = [0, 4, 0]
+    my_pathfinder = PathFinder3D(maze)
+    return my_pathfinder.find_path(start, goal, alg=alg)
+
+
 def test_cornered(alg='bfs'):
     maze = np.zeros((7, 7, 1))
     maze[1, 1:5, :] = 1
@@ -48,56 +60,60 @@ if __name__ == "__main__":
     print(test_wall())
     print(test_2_passing_walls())
     print(test_cornered())
+    print(test_single_holes())
+    print(test_single_holes('a_star'))
 
     # test on large scale maze with 1 dimension moves
     start = [12, 2, 34]
     goal = [31, 45, 1]
+    walls_percent = 0.2
     my_path_finder = create_big_maze(
-        start, goal, percentage_walls=0.2, nb_dim=1)
+        start, goal, percentage_walls=walls_percent, nb_dim=1)
     start_time = time.time()
     solution = my_path_finder.find_path(start, goal, alg='bfs')
     end_time = time.time()
+    print(f'\n====== Walls percentage: {walls_percent*100}% ======')
     print('\n###### With moves dimension = 1 ######')
-    print('BFS time:', end_time-start_time)
+    print(f'BFS time: {end_time-start_time:.2f}s')
     if solution:
         print('BFS solution length:', len(solution))
     start_time = time.time()
     solution = my_path_finder.find_path(start, goal, alg='a_star')
     end_time = time.time()
-    print('A* time:', end_time-start_time)
+    print(f'A* time: {end_time-start_time:.2f}s')
     if solution:
         print('A* solution length:', len(solution))
 
     # test on large scale maze with 2 dimension moves
     my_path_finder = create_big_maze(
-        start, goal, percentage_walls=0.2, nb_dim=2)
+        start, goal, percentage_walls=walls_percent, nb_dim=2)
     start_time = time.time()
     solution = my_path_finder.find_path(start, goal, alg='bfs')
     end_time = time.time()
     print('\n###### With moves dimension = 2 ######')
-    print('BFS time:', end_time-start_time)
+    print(f'BFS time: {end_time-start_time:.2f}s')
     if solution:
         print('BFS solution length:', len(solution))
     start_time = time.time()
     solution = my_path_finder.find_path(start, goal, alg='a_star')
     end_time = time.time()
-    print('A* time:', end_time-start_time)
+    print(f'A* time: {end_time-start_time:.2f}s')
     if solution:
         print('A* solution length:', len(solution))
 
     # test on large scale maze with 3 dimension moves
     my_path_finder = create_big_maze(
-        start, goal, percentage_walls=0.2, nb_dim=3)
+        start, goal, percentage_walls=walls_percent, nb_dim=3)
     start_time = time.time()
     solution = my_path_finder.find_path(start, goal, alg='bfs')
     end_time = time.time()
     print('\n###### With moves dimension = 3 ######')
-    print('BFS time:', end_time-start_time)
+    print(f'BFS time: {end_time-start_time:.2f}s')
     if solution:
         print('BFS solution length:', len(solution))
     start_time = time.time()
     solution = my_path_finder.find_path(start, goal, alg='a_star')
     end_time = time.time()
-    print('A* time:', end_time-start_time)
+    print(f'A* time: {end_time-start_time:.2f}s')
     if solution:
         print('A* solution length:', len(solution))

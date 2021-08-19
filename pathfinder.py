@@ -191,19 +191,9 @@ class PathFinder3D:
 
 if __name__ == "__main__":
     start_time = time.time()
-    maze = np.zeros((40, 50, 60))
+    maze = np.zeros((7, 8, 10))
     maze[1, 0, 0] = 1
+    maze[:-1, 2, :] = 1
+    maze[3, :, 1:] = 1
     pf = PathFinder3D(maze, 1)
-    start = np.array([4, 44, 16])
-    goal = np.array([30, 45, 55])
-    # pf.find_path(start, goal)
-    # pf._find_closest(start)
-    # print(pf.distances)
-    prev = pf.solve_bfs(start, start)
-
-    # print(prev)
-    sol = pf.reconstruct_path(start, start, prev)
-    print(sol)
-    print(len(sol))
-    end = time.time()
-    print(end-start_time)
+    print(pf.find_path([0, 1, 2], [5, 3, 6]))

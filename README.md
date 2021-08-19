@@ -60,9 +60,22 @@ Requirement was to be able to solve cases in a 3D maze of dimension (40, 50, 60)
 
 **With single dimension moves**  
 Depending on the number of walls and the position of start and goal, the BFS requires between 4 and 10 seconds to find the shortest path on this size of maze.
-The A\* search is usually between twice and three times faster and returns quite often the shortest path too.
+The A\* search is usually between twice and three times faster and returns the shortest path too (I didn't encounter any counter example but as per my research it seems A\* does not guarantee the shortest path).
 
-**With higher dimension moves (2 and 3)**
+**With higher dimension moves (2 and 3)**  
+What is really interesting to see is that with higher dimension, the BFS algorithm is much slower which was anticipated (around 20s for 3 dimension moves) but the A\* Search is returning its solution almost instantly.  
+However, the solution is often a few moves above the shortest path found by the BFS algorithm. This is very likely due to the use of the Manhattan distance as heuristic which is not the best suited for multi dimensional movements.
+
+![results_20%_walls](images/results_20percent_walls.PNG)
+![results_40%_walls](images/results_40percent_walls.PNG)
+
+## Potential improvements
+
+There are several improvements that could be made to this module:
+
+- Some other pathfinding algorithm could be implemented although for unweighted grid there is not a lot of other efficient algorithms
+- The possibility to have weights on the cells of the maze could be added
+- As mentioned in the A\* Search algorithm part, the heuristic used is not adapted to multi dimensional movements which likely explains the unability for the algorithm to find the optimal path in these modes. Other heuristics could be implemented such as the Eculidian distance that would be much more suitable for the 3 dimensions movements or for example.
 
 ## Documentation
 
