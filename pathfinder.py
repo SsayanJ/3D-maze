@@ -27,7 +27,7 @@ class PathFinder3D:
             start (list): Coordinates of the starting cell in the format [x, y, z]
             goal (list): Coordinates of the goal cell in the format [x, y, z]
             alg (str, optional): Two algorithms are available, 'bfs' for Breadth First Search 
-                or 'a_star' for A* algorithm.
+                or 'a_star' for A* algorithm. Default value is 'bfs'.
 
         Returns:
             list: a list of coordinates [x, y, z] representing the path from the start cell to the goal.

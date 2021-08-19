@@ -117,7 +117,7 @@ Compute the path between a strat and a goal cell in a 3D maze
 
 - <b>`start`</b> (list): Coordinates of the starting cell in the format [x, y, z]
 - <b>`goal`</b> (list): Coordinates of the goal cell in the format [x, y, z]
-- <b>`alg`</b> (str, optional): Two algorithms are available, 'bfs' for Breadth First Search or 'a_star' for A\* algorithm.
+- <b>`alg`</b> (str, optional): Two algorithms are available, 'bfs' for Breadth First Search or 'a_star' for A\* algorithm. Default value is 'bfs'.
 
 **Returns:**
 
