@@ -18,7 +18,7 @@ class PathFinder3D:
         self.maze = np.array(maze, dtype=int)
         self.moves = self._create_move_list(nb_move_directions)
         self.solved = False
-        self.N, self.M, self.K = maze.shape
+        self.N, self.M, self.K = self.maze.shape
 
     def find_path(self, start, goal, alg='bfs'):
         """Compute the path between a strat and a goal cell in a 3D maze

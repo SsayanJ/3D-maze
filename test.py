@@ -4,6 +4,16 @@ import time
 from pathfinder import PathFinder3D
 
 
+def given_maze(alg='bfs'):
+    start = [0, 0, 0]
+    goal = [2, 3, 3]
+    maze = [[[0, 0, 1, 1], [0, 1, 1, 1], [1, 1, 1, 0], [0, 0, 1, 0]],
+            [[1, 0, 1, 0], [0, 1, 0, 0], [0, 1, 1, 0], [0, 1, 1, 0]],
+            [[1, 0, 1, 0], [1, 1, 0, 1], [1, 0, 0, 1], [0, 0, 1, 0]]]
+    my_pathfinder = PathFinder3D(maze)
+    return my_pathfinder.find_path(start, goal, alg=alg)
+
+
 def test_wall(alg='bfs'):
     maze = np.zeros((5, 5, 5))
     maze[:, 2, :] = 1
@@ -57,11 +67,12 @@ def create_big_maze(start, goal, percentage_walls=0.2, nb_dim=1):
 
 if __name__ == "__main__":
     # simple tests where the shortest path is known
-    print(test_wall())
-    print(test_2_passing_walls())
-    print(test_cornered())
-    print(test_single_holes())
-    print(test_single_holes('a_star'))
+    print("Subject maze: ", given_maze(), "\n")
+    print("Maze with a blocking wall: ", test_wall())
+    print("\n2 passing walls: ", test_2_passing_walls())
+    print("\nStarting cell is cornered, need to go backwards: ", test_cornered())
+    print("\nBFS with single holes in  2 walls: ", test_single_holes())
+    print("\nA* with single holes in  2 walls: ", test_single_holes('a_star'))
 
     # test on large scale maze with 1 dimension moves
     start = [12, 2, 34]
