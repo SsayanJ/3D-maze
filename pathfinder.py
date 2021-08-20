@@ -19,6 +19,7 @@ class PathFinder3D:
         self.moves = self._create_move_list(nb_move_directions)
         self.solved = False
         self.N, self.M, self.K = self.maze.shape
+        self.nb_move_directions = nb_move_directions
 
     def find_path(self, start, goal, alg='bfs'):
         """Compute the path between a strat and a goal cell in a 3D maze
@@ -103,8 +104,15 @@ class PathFinder3D:
                 neighbour_distance = self.distances[tuple(current)] + 1
                 if neighbour_distance < self.distances[tuple(neighbour)]:
                     self.distances[tuple(neighbour)] = neighbour_distance
-                    priority = int(neighbour_distance +
-                                   self._manhattan_distance(neighbour))
+                    if self.nb_move_directions == 1:
+                        priority = int(neighbour_distance +
+                                       self._manhattan_distance(neighbour))
+                    elif self.nb_move_directions == 2:
+                        priority = int(neighbour_distance +
+                                       self._diagonal_distance(neighbour))
+                    else:
+                        priority = int(neighbour_distance +
+                                       self._euclidian_distance(neighbour))
                     cells_queue.put((priority, tuple(neighbour)))
                     previous_cell_dict[tuple(neighbour)] = current
         return previous_cell_dict
@@ -162,12 +170,46 @@ class PathFinder3D:
 
         Args:
             position(:obj:`numpy array`): the [x, y, z] coordinates of the cell to check
+                the Manhattan distance from the goal
 
         Returns:
             int: Manhattan distance between the input cell and the goal
 
         """
         return abs(position[0] - self.goal[0]) + abs(position[1] - self.goal[1]) + abs(position[2] - self.goal[2])
+
+    def _euclidian_distance(self, position):
+        """Compute Euclidian distance between a cell and the goal.
+
+        Args:
+            position(:obj:`numpy array`): the [x, y, z] coordinates of the cell to check
+                the Euclidian distance from the goal
+
+        Returns:
+            int: Euclidian distance between the input cell and the goal
+
+        """
+        return np.linalg.norm(position-self.goal)
+
+    def _diagonal_distance(self, position):
+        """Compute Diagonal distance between a cell and the goal.
+
+        Args:
+            position(:obj:`numpy array`): the [x, y, z] coordinates of the cell to check
+                the Diagonal distance from the goal
+
+        Returns:
+            int: Diagonal distance between the input cell and the goal
+
+        """
+        dx = abs(position[0]-self.goal[0])
+        dy = abs(position[1]-self.goal[1])
+        dz = abs(position[2]-self.goal[2])
+        dmin = min(dx, dy, dz)
+        dmax = max(dx, dy, dz)
+        dmid = dx + dy + dz - dmin - dmax
+
+        return (np.sqrt(3) - np.sqrt(2)) * dmin + (np.sqrt(2) - 1) * dmid + 1 * dmax
 
     def _create_move_list(self, nb_dimensions=1):
         """Compute the possible move list based on the nb of dimension moves allowed.
