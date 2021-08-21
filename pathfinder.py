@@ -219,7 +219,7 @@ class PathFinder3D:
                 each move. Value between 1 and 3, default is 1.
 
         Returns:
-            int: Manhattan distance between the input cell and the goal
+            list: list of possible moves as a list of numpy arrays
 
         """
         move_list = []

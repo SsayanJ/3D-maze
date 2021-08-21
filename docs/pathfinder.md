@@ -35,7 +35,7 @@ Compute the possible move list based on the nb of dimension moves allowed.
 
 **Returns:**
 
-- <b>`int`</b>: Manhattan distance between the input cell and the goal
+- <b>`list`</b>: list: list of possible moves as a list of numpy arrays
 
 ---
 
